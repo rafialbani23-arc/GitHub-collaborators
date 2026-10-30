@@ -2,179 +2,619 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Collaboration</title>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f5f0" />
+    <meta name="description"
+        content="Belajar GitHub Collaboration melalui empat materi interaktif: fondasi, repository, workflow, dan kolaborasi tim." />
+    <title>GitHub Collaboration — Build Better Together</title>
     <style>
-        /* RESET */
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg: #f5f5f0;
+            --ink: #1d201b;
+            --muted: #6b7067;
+            --line: #d9ddd3;
+            --accent: #c8f36b;
+            --radius: 23px
+        }
+
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box
         }
 
-        /* BODY */
+        html {
+            scroll-behavior: smooth
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f1f5f9;
-            min-height: 100vh;
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        button {
+            font: inherit
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid #668b2d;
+            outline-offset: 4px
+        }
+
+        .shell {
+            width: min(1220px, calc(100% - 48px));
+            margin: auto
+        }
+
+        .topbar {
+            height: 84px;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--line)
         }
 
-        /* CONTAINER */
-        .container {
-            width: 100%;
-            max-width: 1000px;
-            padding: 40px 20px;
-            text-align: center;
+        .brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 21px;
+            font-weight: 700;
+            letter-spacing: -1.2px
         }
 
-        /* HEADING */
-        h1 {
-            font-size: 36px;
-            color: #1e293b;
-            margin-bottom: 12px;
+        .brand span {
+            display: inline-grid;
+            place-items: center;
+            width: 32px;
+            height: 32px;
+            background: var(--ink);
+            color: var(--accent);
+            border-radius: 10px;
+            margin-right: 9px
         }
 
-        .subtitle {
-            font-size: 16px;
-            color: #64748b;
-            margin-bottom: 40px;
-        }
-
-        /* CARD CONTAINER */
-        .card-container {
+        .toplinks {
             display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 30px;
+            font-size: 13px;
+            font-weight: 700
         }
 
-        /* CARD */
-        .card {
-            background: white;
-            width: 350px;
-            padding: 35px 25px;
-            border-radius: 16px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            transition: 0.3s ease;
+        .toplinks a:hover {
+            text-decoration: underline;
+            text-underline-offset: 5px
         }
 
-        /* CARD HOVER */
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        .pill {
+            border: 1px solid var(--ink);
+            border-radius: 40px;
+            padding: 11px 17px
         }
 
-        /* ICON */
-        .icon {
-            font-size: 50px;
-            margin-bottom: 20px;
+        .hero {
+            padding: 90px 0 70px;
+            display: grid;
+            grid-template-columns: 1.4fr .6fr;
+            align-items: end;
+            gap: 40px
         }
 
-        /* CARD TITLE */
-        .card h2 {
-            font-size: 24px;
-            color: #1e293b;
-            margin-bottom: 15px;
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase
         }
 
-        /* CARD DESCRIPTION */
-        .card p {
-            font-size: 15px;
-            color: #64748b;
-            line-height: 1.7;
-            margin-bottom: 25px;
+        .dot {
+            width: 9px;
+            height: 9px;
+            background: #7db12f;
+            border-radius: 50%
         }
 
-        /* BUTTON */
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background: #2563eb;
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(62px, 8.3vw, 125px);
+            line-height: .94;
+            letter-spacing: -.085em;
+            margin: 25px 0 0;
+            font-weight: 600
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: #7e8b75
+        }
+
+        .hero-copy {
+            padding-bottom: 9px
+        }
+
+        .hero-copy p {
+            font-size: 18px;
+            line-height: 1.65;
+            color: var(--muted);
+            max-width: 330px;
+            margin: 0 0 30px
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 22px;
+            background: var(--ink);
             color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: 0.3s;
+            padding: 16px 21px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: transform .25s, background .25s
         }
 
-        /* BUTTON HOVER */
-        .btn:hover {
-            background: #1d4ed8;
+        .cta:hover {
+            background: #3a4531;
+            transform: translateY(-3px)
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 28px;
+        .cta span {
+            color: var(--accent);
+            font-size: 20px
+        }
+
+        .section-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            border-top: 1px solid var(--line);
+            padding: 25px 0 25px
+        }
+
+        .section-head h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 26px;
+            letter-spacing: -1.1px;
+            margin: 0
+        }
+
+        .section-head p {
+            font-size: 13px;
+            color: var(--muted);
+            margin: 0
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 16px
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius);
+            padding: 32px;
+            min-height: 330px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            isolation: isolate;
+            transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 35px #1d201b17
+        }
+
+        .card:before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(350px circle at var(--mx, 50%) var(--my, 50%), #ffffff35, transparent 75%)
+        }
+
+        .card-1 {
+            grid-column: span 7;
+            background: #d6edb3
+        }
+
+        .card-2 {
+            grid-column: span 5;
+            background: #242923;
+            color: #fff
+        }
+
+        .card-3 {
+            grid-column: span 5;
+            background: #e6e9e1
+        }
+
+        .card-4 {
+            grid-column: span 7;
+            background: #d8ddf0
+        }
+
+        .card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px
+        }
+
+        .number {
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            font-weight: 700
+        }
+
+        .arrow {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border: 1px solid currentColor;
+            border-radius: 50%;
+            font-size: 22px;
+            transition: transform .25s
+        }
+
+        .card:hover .arrow {
+            transform: rotate(45deg)
+        }
+
+        .card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(30px, 3.6vw, 49px);
+            letter-spacing: -2px;
+            line-height: 1.02;
+            margin: 0 0 13px
+        }
+
+        .card p {
+            max-width: 390px;
+            line-height: 1.6;
+            font-size: 14px;
+            margin: 0;
+            opacity: .75
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1
+        }
+
+        .card-art {
+            position: absolute;
+            right: 28px;
+            top: 95px;
+            font-size: 100px;
+            opacity: .2;
+            transform: rotate(-12deg);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: -12px;
+            user-select: none
+        }
+
+        .card-2 .card-art {
+            color: var(--accent);
+            opacity: .8
+        }
+
+        .tags {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+            margin-top: 20px
+        }
+
+        .tag {
+            border: 1px solid currentColor;
+            border-radius: 30px;
+            padding: 7px 11px;
+            font-size: 11px;
+            font-weight: 700;
+            opacity: .8
+        }
+
+        .card-link {
+            position: absolute;
+            inset: 0;
+            z-index: 2
+        }
+
+        .card-link:focus-visible {
+            outline: 3px solid #5b7d2b;
+            outline-offset: -6px;
+            border-radius: var(--radius)
+        }
+
+        .footer {
+            margin-top: 80px;
+            padding: 30px 0 40px;
+            border-top: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .footer strong {
+            color: var(--ink)
+        }
+
+        dialog {
+            border: 0;
+            border-radius: 24px;
+            padding: 0;
+            width: min(520px, calc(100% - 32px));
+            box-shadow: 0 30px 100px #0005;
+            color: var(--ink)
+        }
+
+        dialog::backdrop {
+            background: #111a14a8;
+            backdrop-filter: blur(5px)
+        }
+
+        .dialog-inner {
+            padding: 36px
+        }
+
+        .dialog-inner h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 36px;
+            letter-spacing: -1.8px;
+            margin: 12px 0
+        }
+
+        .dialog-inner p {
+            line-height: 1.7;
+            color: var(--muted)
+        }
+
+        .dialog-inner ul {
+            line-height: 2;
+            color: var(--ink);
+            padding-left: 20px
+        }
+
+        .close {
+            float: right;
+            border: 1px solid var(--line);
+            background: transparent;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            cursor: pointer;
+            font-size: 22px
+        }
+
+        @media(max-width:850px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 65px 0 55px;
+                gap: 30px
+            }
+
+            .hero h1 {
+                font-size: clamp(58px, 12vw, 95px)
+            }
+
+            .hero-copy p {
+                max-width: 560px
+            }
+
+            .card-1,
+            .card-2,
+            .card-3,
+            .card-4 {
+                grid-column: span 6
             }
 
             .card {
-                width: 100%;
-                max-width: 350px;
+                min-height: 350px
+            }
+
+            .card-art {
+                font-size: 75px;
+                top: 110px
+            }
+        }
+
+        @media(max-width:600px) {
+            .shell {
+                width: min(100% - 32px, 1220px)
+            }
+
+            .topbar {
+                height: 72px
+            }
+
+            .toplinks {
+                gap: 12px
+            }
+
+            .toplinks>a:first-child {
+                display: none
+            }
+
+            .hero {
+                padding-top: 58px
+            }
+
+            .hero h1 {
+                font-size: clamp(52px, 13vw, 78px)
+            }
+
+            .section-head {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 8px
+            }
+
+            .card-1,
+            .card-2,
+            .card-3,
+            .card-4 {
+                grid-column: span 12
+            }
+
+            .card {
+                min-height: 320px;
+                padding: 27px
+            }
+
+            .card h3 {
+                font-size: 38px
+            }
+
+            .footer {
+                flex-direction: column;
+                margin-top: 55px
+            }
+
+            .card-art {
+                right: 28px
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            *,
+            *:before,
+            *:after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important
             }
         }
     </style>
 </head>
 
 <body>
-
-    <div class="container">
-
-        <h1>GitHub Collaboration 🚀</h1>
-
-        <p class="subtitle">
-            Belajar bekerja sama menggunakan Git dan GitHub
-        </p>
-
-        <div class="card-container">
-
-            <!-- ================================= -->
-            <!-- CARD 1 - DEVELOPER 1 -->
-            <!-- ================================= -->
-
-            <div class="card">
-
-                <div class="icon">👨‍💻</div>
-
-                <h2>Card Pertama</h2>
-
-                <p>
-                    Card ini dibuat oleh Developer 1.
-                    Belajar HTML, CSS, dan GitHub Collaboration.
-                </p>
-
-                <a href="#" class="btn">Selengkapnya</a>
-
-            </div>
-
-            <!-- ================================= -->
-            <!-- CARD 2 - DEVELOPER 2 -->
-            <!-- ================================= -->
-
-            <div class="card">
-
-                <div class="icon">🚀</div>
-
-                <h2>Card Kedua</h2>
-
-                <p>
-                    Card ini dibuat oleh Developer 2.
-                    Belajar bekerja sama dalam satu repository GitHub.
-                </p>
-
-                <a href="#" class="btn">Selengkapnya</a>
-
-            </div>
-
-        </div>
-
+    <div class="shell">
+        <header class="topbar"><a class="brand" href="#home"
+                aria-label="GitCollab, kembali ke awal"><span>⌘</span>gitcollab<span
+                    style="background:none;color:#7f9e50;width:auto;margin:0">.</span></a>
+            <nav class="toplinks" aria-label="Navigasi utama"><a href="#materi">Materi</a><a class="pill"
+                    href="https://docs.github.com/id/get-started" target="_blank" rel="noopener noreferrer">GitHub Docs
+                    ↗</a></nav>
+        </header>
+        <main id="home">
+            <section class="hero" aria-labelledby="hero-title">
+                <div>
+                    <div class="eyebrow"><span class="dot"></span> THE DEVELOPER PLAYGROUND / 2026</div>
+                    <h1 id="hero-title">Build.<br>Commit.<br><em>Collaborate.</em></h1>
+                </div>
+                <div class="hero-copy">
+                    <p>Ide besar tidak dibangun sendirian. Kuasai Git, pahami GitHub, dan ciptakan sesuatu yang lebih
+                        baik bersama tim.</p><a href="#materi" class="cta">Jelajahi materi <span
+                            aria-hidden="true">↗</span></a>
+                </div>
+            </section>
+            <section id="materi" aria-labelledby="materi-title">
+                <div class="section-head">
+                    <h2 id="materi-title">Explore the essentials <span aria-hidden="true">↗</span></h2>
+                    <p>04 TOPIK · SATU ALUR KOLABORASI</p>
+                </div>
+                <div class="grid">
+                    <article class="card card-1">
+                        <div class="card-top"><span class="number">01 / THE FOUNDATION</span><span class="arrow"
+                                aria-hidden="true">↗</span></div>
+                        <div class="card-art" aria-hidden="true">&lt;/&gt;</div>
+                        <div class="card-content">
+                            <h3>Developer<br>Fundamentals.</h3>
+                            <p>Mulai dari HTML, CSS, dan dasar version control. Fondasi kuat untuk setiap proyek
+                                digital.</p>
+                            <div class="tags"><span class="tag">HTML & CSS</span><span class="tag">GIT BASICS</span>
+                            </div>
+                        </div><a href="#detail" class="card-link" data-topic="0"
+                            aria-label="Pelajari Developer Fundamentals"></a>
+                    </article>
+                    <article class="card card-2">
+                        <div class="card-top"><span class="number">02 / THE PLATFORM</span><span class="arrow"
+                                aria-hidden="true">↗</span></div>
+                        <div class="card-art" aria-hidden="true">{ }</div>
+                        <div class="card-content">
+                            <h3>GitHub<br>Repository.</h3>
+                            <p>Simpan, kelola, dan bagikan kode dalam satu tempat. Dari commit pertama sampai proyek
+                                siap dirilis.</p>
+                            <div class="tags"><span class="tag">REPOSITORY</span><span class="tag">COMMITS</span></div>
+                        </div><a href="#detail" class="card-link" data-topic="1"
+                            aria-label="Pelajari GitHub Repository"></a>
+                    </article>
+                    <article class="card card-3">
+                        <div class="card-top"><span class="number">03 / THE PROCESS</span><span class="arrow"
+                                aria-hidden="true">↗</span></div>
+                        <div class="card-art" aria-hidden="true">⑂</div>
+                        <div class="card-content">
+                            <h3>Git<br>Workflow.</h3>
+                            <p>Bangun alur kerja yang rapi dengan branch, merge, dan pull request. Lebih sedikit
+                                konflik, lebih banyak progres.</p>
+                            <div class="tags"><span class="tag">BRANCHING</span><span class="tag">PULL REQUEST</span>
+                            </div>
+                        </div><a href="#detail" class="card-link" data-topic="2" aria-label="Pelajari Git Workflow"></a>
+                    </article>
+                    <article class="card card-4">
+                        <div class="card-top"><span class="number">04 / THE PEOPLE</span><span class="arrow"
+                                aria-hidden="true">↗</span></div>
+                        <div class="card-art" aria-hidden="true">✳</div>
+                        <div class="card-content">
+                            <h3>Team<br>Collaboration.</h3>
+                            <p>Kerja sama bukan sekadar berbagi kode. Review, diskusi, dan selesaikan masalah bersama
+                                dalam satu tim.</p>
+                            <div class="tags"><span class="tag">CODE REVIEW</span><span class="tag">ISSUES &
+                                    DISCUSSIONS</span></div>
+                        </div><a href="#detail" class="card-link" data-topic="3"
+                            aria-label="Pelajari Team Collaboration"></a>
+                    </article>
+                </div>
+            </section>
+        </main>
+        <footer class="footer"><strong>gitcollab. — Better code, together.</strong><span>Made for curious developers ·
+                2026</span></footer>
     </div>
-
+    <dialog id="detail" aria-labelledby="detail-title">
+        <div class="dialog-inner"><button class="close" type="button" aria-label="Tutup detail">×</button>
+            <div class="eyebrow"><span class="dot"></span> LEARNING PATH</div>
+            <h2 id="detail-title"></h2>
+            <p id="detail-desc"></p>
+            <ul id="detail-list"></ul><a id="detail-docs" class="cta" href="https://docs.github.com/id" target="_blank"
+                rel="noopener noreferrer">Baca dokumentasi <span aria-hidden="true">↗</span></a>
+        </div>
+    </dialog>
+    <script>
+        const topics = [
+            { title: 'Developer Fundamentals', desc: 'Mulai dari fondasi web dan pahami mengapa version control penting dalam pengembangan perangkat lunak.', steps: ['Buat struktur halaman dengan HTML', 'Atur tampilan responsif dengan CSS', 'Kenali git init, git add, dan git commit'], url: 'https://docs.github.com/id/get-started/using-git/about-git' },
+            { title: 'GitHub Repository', desc: 'Kelola kode proyek dalam repository yang dapat diakses dan dikembangkan bersama.', steps: ['Buat repository baru di GitHub', 'Hubungkan repository lokal ke remote', 'Push perubahan dan baca riwayat commit'], url: 'https://docs.github.com/id/repositories/creating-and-managing-repositories/quickstart-for-repositories' },
+            { title: 'Git Workflow', desc: 'Gunakan workflow sederhana agar perubahan dari setiap developer bisa digabungkan dengan aman.', steps: ['Buat branch untuk fitur baru', 'Kirim pull request dan minta review', 'Merge setelah perubahan disetujui'], url: 'https://docs.github.com/id/pull-requests/collaborating-with-pull-requests' },
+            { title: 'Team Collaboration', desc: 'Bangun kebiasaan komunikasi dan code review yang sehat saat mengerjakan proyek bersama.', steps: ['Catat tugas dan bug menggunakan Issues', 'Diskusikan perubahan melalui pull request', 'Berikan review yang spesifik dan konstruktif'], url: 'https://docs.github.com/id/issues/tracking-your-work-with-issues' }
+        ];
+        const dialog = document.querySelector('#detail');
+        document.querySelectorAll('[data-topic]').forEach(link => link.addEventListener('click', event => { event.preventDefault(); const topic = topics[Number(link.dataset.topic)]; document.querySelector('#detail-title').textContent = topic.title; document.querySelector('#detail-desc').textContent = topic.desc; document.querySelector('#detail-list').replaceChildren(...topic.steps.map(step => { const li = document.createElement('li'); li.textContent = step; return li })); document.querySelector('#detail-docs').href = topic.url; dialog.showModal() }));
+        document.querySelector('.close').addEventListener('click', () => dialog.close()); dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close() });
+        if (matchMedia('(hover:hover) and (prefers-reduced-motion:no-preference)').matches) { document.querySelectorAll('.card').forEach(card => card.addEventListener('pointermove', event => { const rect = card.getBoundingClientRect(); card.style.setProperty('--mx', `${event.clientX - rect.left}px`); card.style.setProperty('--my', `${event.clientY - rect.top}px`) })) }
+    </script>
 </body>
 
 </html>
