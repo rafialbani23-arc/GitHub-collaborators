@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Collaboration</title>
+
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* BODY */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* CONTAINER */
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* HEADING */
+        h1 {
+            font-size: 36px;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #64748b;
+            margin-bottom: 40px;
+        }
+
+        /* CARD CONTAINER */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        /* CARD */
+        .card {
+            background: white;
+            width: 350px;
+            padding: 35px 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: 0.3s ease;
+        }
+
+        /* CARD HOVER */
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        /* ICON */
+        .icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        /* CARD TITLE */
+        .card h2 {
+            font-size: 24px;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+
+        /* CARD DESCRIPTION */
+        .card p {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        /* BUTTON */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        /* BUTTON HOVER */
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>GitHub Collaboration 🚀</h1>
+
+        <p class="subtitle">
+            Belajar bekerja sama menggunakan Git dan GitHub
+        </p>
+
+        <div class="card-container">
+
+            <!-- ================================= -->
+            <!-- CARD 1 - DEVELOPER 1 -->
+            <!-- ================================= -->
+
+            <div class="card">
+
+                <div class="icon">👨‍💻</div>
+
+                <h2>Card Pertama</h2>
+
+                <p>
+                    Card ini dibuat oleh Developer 1.
+                    Belajar HTML, CSS, dan GitHub Collaboration.
+                </p>
+
+                <a href="#" class="btn">Selengkapnya</a>
+
+            </div>
+
+            <!-- ================================= -->
+            <!-- CARD 2 - DEVELOPER 2 -->
+            <!-- ================================= -->
+
+            <div class="card">
+
+                <div class="icon">🚀</div>
+
+                <h2>Card Kedua</h2>
+
+                <p>
+                    Card ini dibuat oleh Developer 2.
+                    Belajar bekerja sama dalam satu repository GitHub.
+                </p>
+
+                <a href="#" class="btn">Selengkapnya</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
